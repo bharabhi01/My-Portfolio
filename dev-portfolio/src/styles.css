@@ -1,0 +1,555 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Light theme variables */
+    --font-primary: -apple-system;
+    --color-background: #ffffff;
+    --color-text: #000000;
+    --color-text-secondary: #666666;
+    --color-accent: #000000;
+    --color-border: #eaeaea;
+    --color-card: #f9f9f9;
+    --color-link: #0a5577;
+    /* Dark blue for light mode */
+    --color-link-hover: #0d2d5a;
+    /* Slightly darker on hover */
+    --transition-standard: all 0.2s ease;
+    --max-width: 768px;
+    --section-spacing: 60px;
+}
+
+/* Dark theme variables */
+.dark-theme {
+    --color-background: #070a13;
+    --color-text: #ffffff;
+    --color-text-secondary: #a0a0a0;
+    --color-accent: #ffffff;
+    --color-border: #333333;
+    --color-card: #1a1a1a;
+    --color-link: #4092ad;
+    /* Brighter blue for dark mode */
+    --color-link-hover: #6ba1ff;
+    /* Slightly lighter on hover */
+}
+
+.dark-theme .theme-toggle svg {
+    color: var(--color-text);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.7;
+    /* Adjust opacity to make it more subtle */
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 0 20px;
+}
+
+.app {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 80px 0;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: static;
+    /* Override the absolute positioning */
+    margin-left: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-standard);
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.theme-toggle svg {
+    color: var(--color-text);
+}
+
+.theme-toggle:hover {
+    opacity: 1;
+}
+
+.theme-toggle:focus {
+    outline: none;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-align: left;
+}
+
+h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+h3 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+}
+
+p {
+    margin-bottom: 16px;
+    color: var(--color-text-secondary);
+    text-align: justify;
+}
+
+a {
+    color: var(--color-link);
+    text-decoration: none;
+    transition: var(--transition-standard);
+}
+
+a:hover {
+    color: var(--color-link-hover);
+    opacity: 0.95;
+}
+
+/* Header styles */
+header {
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.header-top h1 {
+    margin-bottom: 0;
+}
+
+.title {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--color-text-secondary);
+}
+
+.bio {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* Social links */
+.social-links {
+    color: var(--color-link);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.social-links a:hover {
+    color: var(--color-link-hover);
+}
+
+.separator {
+    color: var(--color-text-secondary);
+    margin: 0 4px;
+    opacity: 0.6;
+}
+
+/* Section styles */
+section {
+    margin-bottom: var(--section-spacing);
+}
+
+/* Projects section */
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.project-card p {
+    text-align: justify;
+    margin-bottom: 12px;
+}
+
+.project-card {
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.project-card:last-child {
+    border-bottom: none;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 16px 0;
+}
+
+.project-tag {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background-color: var(--color-card-background, var(--color-card));
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    transition: var(--transition-standard);
+}
+
+.project-tag:hover {
+    transform: translateY(-1px);
+    background-color: var(--color-skill-hover);
+}
+
+.project-links {
+    color: var(--color-link);
+    font-weight: 500;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.project-links a:hover {
+    color: var(--color-link-hover);
+}
+
+/* Work section */
+.work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.work-item {
+    margin-bottom: 12px;
+}
+
+.work-item p {
+    margin-bottom: 0;
+}
+
+/* Writings section */
+.writings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.writing-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    color: var(--color-text);
+}
+
+.writing-item:hover {
+    text-decoration: underline;
+    color: var(--color-link);
+}
+
+.emoji {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.writing-item span:not(.emoji) {
+    color: var(--color-link);
+}
+
+.more-projects a {
+    font-weight: 500;
+}
+
+/* Footer styles */
+footer {
+    margin-top: 80px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    text-align: center;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+    .app {
+        padding: 40px 0;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    header {
+        margin-bottom: 40px;
+    }
+
+    .header-top {
+        align-items: flex-start;
+    }
+
+    .header-top h1 {
+        font-size: 26px;
+    }
+
+    .social-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    section {
+        margin-bottom: 40px;
+    }
+
+    p,
+    .bio,
+    .project-card p,
+    .timeline-description,
+    .timeline-points li {
+        text-align: left;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+}
+
+.timeline {
+    position: relative;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background-color: var(--color-border);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -26px;
+    /* Adjusted to align with the vertical line */
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    transform: translateY(12px);
+    border: 2px solid var(--color-background);
+    box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.timeline-content {
+    padding-bottom: 10px;
+}
+
+.timeline-date {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.timeline-position {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    margin-bottom: 12px;
+    margin-top: 4px;
+}
+
+.timeline-description {
+    margin-bottom: 16px;
+    font-size: 15px;
+    text-align: justify;
+}
+
+
+.timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.timeline-tag {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: var(--color-card);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.timeline-points {
+    margin-bottom: 16px;
+    padding-left: 18px;
+}
+
+.timeline-points li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    position: relative;
+    line-height: 1.5;
+    text-align: justify;
+    padding-right: 8px;
+    /* Add a little padding for better text flow */
+}
+
+.timeline-points li:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-points li::before {
+    content: "•";
+    position: absolute;
+    left: -18px;
+    color: var(--color-primary, var(--color-accent));
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Optional: Add a subtle hover effect to each point */
+.timeline-points li:hover {
+    color: var(--color-text);
+    transition: color 0.2s ease;
+}
+
+/* Dark theme specific timeline adjustments */
+.dark-theme .timeline-marker {
+    box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.skill-item {
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background-color: var(--color-card);
+    color: var(--color-text-secondary);
+    transition: var(--transition-standard);
+    font-weight: 500;
+    cursor: default;
+}
+
+.skill-item:hover {
+    background-color: var(--color-link);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments for timeline */
+@media (max-width: 600px) {
+    .timeline {
+        margin-left: 10px;
+        padding-left: 15px;
+    }
+
+    .timeline-marker {
+        left: -21px;
+        width: 10px;
+        height: 10px;
+    }
+
+    .timeline-date {
+        font-size: 13px;
+    }
+
+    .timeline-position {
+        font-size: 15px;
+    }
+
+    .timeline-description {
+        font-size: 14px;
+    }
+
+    .skill-item {
+        font-size: 13px;
+        padding: 5px 12px;
+    }
+}
+
+/* Adding smooth theme transition for all elements */
+*,
+*::before,
+*::after {
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
